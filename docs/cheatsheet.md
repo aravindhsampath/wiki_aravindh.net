@@ -122,7 +122,8 @@ import tensorflow as tf
 
 Inline highlighting can be done as well
 
-```#!python print("Hello") ``
+```#!python print("Hello") ```
+
 
 ## Foot notes
 
