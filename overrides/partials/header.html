@@ -1,0 +1,51 @@
+<link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css"/>
+<noscript id="deferred-styles">
+  <link rel="stylesheet" type="text/css" href="https://aravindh.net/css/fonts.css"/>
+</noscript>
+<link rel="stylesheet" type="text/css" href="https://aravindh.net/css/fonts.css"/>
+<style>
+      .Alegreya-sans
+      {
+          font-family:    'Alegreya Sans',serif;
+          /*font-weight:    400; */
+      }
+      .sysui
+      {
+          font-family: -apple-system, system-ui, BlinkMacSystemFont, 
+       'Segoe UI', Roboto, 'Helvetica Neue', 
+       Ubuntu, Arial, sans-serif;
+      }
+</style>
+
+<nav class="pa2 pa3-ns tc">
+  <!-- <a class="link dim black b f1 f-headline-ns tc db mb3 mb4-ns" href="#" title="Home">Site Name</a> -->
+  <h1 class="mt2 mb0 Chelsea fw4 f2 black dark-blue b">Aravindh.net</h1>
+  <div>
+    <h2 class="mt2 mb0 f7 fw4 ttu tracked Alegreya-sans">/share/mind</h2>
+  </div>
+  <nav class="bt bb tc mw7 center mt2 mt3-ns">
+        		<a class="f7 f6-l fw5 link bg-animate black-80 hover-bg-light-green dib pa1 pa3-ns ph4-l Alegreya-sans" href="/">Home</a>
+        		<a class="f7 f6-l fw5 link bg-animate black-80 hover-bg-light-green dib pa1 pa3-ns ph4-l Alegreya-sans" href="/about/">About</a>
+        		<a class="f7 f6-l fw5 link bg-animate black-80 hover-bg-light-green dib pa1 pa3-ns ph4-l Alegreya-sans" href="/shelf/">Shelf</a>
+            <a class="f7 f6-l fw5 link bg-animate black-80 hover-bg-light-green dib pa1 pa3-ns ph4-l Alegreya-sans" href="/wiki/">Wiki</a>
+        		<a class="f7 f6-l fw5 link bg-animate black-80 hover-bg-light-green dib pa1 pa3-ns ph4-l Alegreya-sans" href="/projects/">Projects</a>
+        		<a class="f7 f6-l fw5 link bg-animate black-80 hover-bg-light-green dib pa1 pa3-ns ph4-l Alegreya-sans" href="/contact/">Contact</a>
+   </nav>
+</nav>
+
+<header class="md-header center w-100 bg-white" data-md-component="header">
+	<nav class="md-header-nav md-grid">
+    <label class="md-header-nav__button md-icon bg-near-black" for="__drawer">
+      {% include ".icons/material/menu" ~ ".svg" %}
+    </label>
+	<div class="center">
+    
+	{% if "search" in config["plugins"] %}
+      <label class="md-header-nav__button md-icon bg-near-black" for="__search">
+        {% include ".icons/material/magnify.svg" %}
+      </label>
+      {% include "partials/search.html" %}
+    {% endif %}
+	</div>
+   	</nav>
+</header>

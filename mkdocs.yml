@@ -1,0 +1,36 @@
+site_name: Aravindh.net - wiki
+site_url: https://aravindh.net/wiki
+theme:
+  name: material
+  font: false
+  custom_dir: overrides
+  palette:
+    primary: light blue
+    accent: black
+repo_name: aravindhsampath/learngo
+repo_url: https://github.com/aravindhsampath/learngo
+markdown_extensions:
+  - admonition
+  - codehilite:
+      linenums: true
+  - footnotes
+  - toc:
+      permalink: true
+  - pymdownx.critic
+  - pymdownx.tabbed
+  - pymdownx.tilde
+  - pymdownx.inlinehilite
+  - pymdownx.magiclink
+  - pymdownx.details
+  - pymdownx.mark
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:pymdownx.emoji.twemoji
+      emoji_generator: !!python/name:pymdownx.emoji.to_svg
+plugins:
+  - search:
+      prebuild_index: true
+#  - minify:
+#      minify_html: true
+#  - git-revision-date-localized

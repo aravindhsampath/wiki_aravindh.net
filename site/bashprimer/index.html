@@ -1,0 +1,1469 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <link rel="canonical" href="https://aravindh.net/wiki/bashprimer/">
+      
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.2.0">
+    
+    
+      
+        <title>Bash primer - Aravindh.net - wiki</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.18ac144a.min.css">
+      
+        <link rel="stylesheet" href="../assets/stylesheets/palette.616af814.min.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#03a9f4">
+      
+    
+    
+    
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="light-blue" data-md-color-accent="black">
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#bash-primer" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css"/>
+<noscript id="deferred-styles">
+  <link rel="stylesheet" type="text/css" href="https://aravindh.net/css/fonts.css"/>
+</noscript>
+<link rel="stylesheet" type="text/css" href="https://aravindh.net/css/fonts.css"/>
+<style>
+      .Alegreya-sans
+      {
+          font-family:    'Alegreya Sans',serif;
+          /*font-weight:    400; */
+      }
+      .sysui
+      {
+          font-family: -apple-system, system-ui, BlinkMacSystemFont, 
+       'Segoe UI', Roboto, 'Helvetica Neue', 
+       Ubuntu, Arial, sans-serif;
+      }
+</style>
+
+<nav class="pa2 pa3-ns tc">
+  <!-- <a class="link dim black b f1 f-headline-ns tc db mb3 mb4-ns" href="#" title="Home">Site Name</a> -->
+  <h1 class="mt2 mb0 Chelsea fw4 f2 black dark-blue b">Aravindh.net</h1>
+  <div>
+    <h2 class="mt2 mb0 f7 fw4 ttu tracked Alegreya-sans">/share/mind</h2>
+  </div>
+  <nav class="bt bb tc mw7 center mt2 mt3-ns">
+        		<a class="f7 f6-l fw5 link bg-animate black-80 hover-bg-light-green dib pa1 pa3-ns ph4-l Alegreya-sans" href="/">Home</a>
+        		<a class="f7 f6-l fw5 link bg-animate black-80 hover-bg-light-green dib pa1 pa3-ns ph4-l Alegreya-sans" href="/about/">About</a>
+        		<a class="f7 f6-l fw5 link bg-animate black-80 hover-bg-light-green dib pa1 pa3-ns ph4-l Alegreya-sans" href="/shelf/">Shelf</a>
+            <a class="f7 f6-l fw5 link bg-animate black-80 hover-bg-light-green dib pa1 pa3-ns ph4-l Alegreya-sans" href="/wiki/">Wiki</a>
+        		<a class="f7 f6-l fw5 link bg-animate black-80 hover-bg-light-green dib pa1 pa3-ns ph4-l Alegreya-sans" href="/projects/">Projects</a>
+        		<a class="f7 f6-l fw5 link bg-animate black-80 hover-bg-light-green dib pa1 pa3-ns ph4-l Alegreya-sans" href="/contact/">Contact</a>
+   </nav>
+</nav>
+
+<header class="md-header center w-100 bg-white" data-md-component="header">
+	<nav class="md-header-nav md-grid">
+    <label class="md-header-nav__button md-icon bg-near-black" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+	<div class="center">
+    
+	
+      <label class="md-header-nav__button md-icon bg-near-black" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form bg-near-black" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+	</div>
+   	</nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://aravindh.net/wiki" title="Aravindh.net - wiki" class="md-nav__button md-logo" aria-label="Aravindh.net - wiki">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Aravindh.net - wiki
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/aravindhsampath/learngo/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    aravindhsampath/learngo
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Bash primer
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="Bash primer" class="md-nav__link md-nav__link--active">
+      Bash primer
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#a-simple-bash-script" class="md-nav__link">
+    A simple bash script
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comments" class="md-nav__link">
+    Comments
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#variables" class="md-nav__link">
+    Variables
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quotes" class="md-nav__link">
+    Quotes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#command-substitution" class="md-nav__link">
+    Command substitution
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exit-codes" class="md-nav__link">
+    Exit codes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#arithmetic-operations" class="md-nav__link">
+    Arithmetic operations
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#commandline-arguments" class="md-nav__link">
+    Commandline arguments
+  </a>
+  
+    <nav class="md-nav" aria-label="Commandline arguments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#streams" class="md-nav__link">
+    Streams
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pipes" class="md-nav__link">
+    Pipes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#command-sequences" class="md-nav__link">
+    Command sequences
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conditional-execution" class="md-nav__link">
+    Conditional execution
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flow-control-for-and-while-loops" class="md-nav__link">
+    Flow control - for and while loops
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    Functions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#libraries-and-functions-from-other-scripts" class="md-nav__link">
+    Libraries and functions from other scripts
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../cheatsheet/" title="cheat sheet" class="md-nav__link">
+      cheat sheet
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../freebsd/" title="Freebsd" class="md-nav__link">
+      Freebsd
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../linuxadmin/" title="linuxadmin" class="md-nav__link">
+      linuxadmin
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../perf/" title="perf" class="md-nav__link">
+      perf
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../rsync/" title="Rsync" class="md-nav__link">
+      Rsync
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../slurm/" title="Slurm" class="md-nav__link">
+      Slurm
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../zfs/" title="ZFS" class="md-nav__link">
+      ZFS
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#a-simple-bash-script" class="md-nav__link">
+    A simple bash script
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comments" class="md-nav__link">
+    Comments
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#variables" class="md-nav__link">
+    Variables
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quotes" class="md-nav__link">
+    Quotes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#command-substitution" class="md-nav__link">
+    Command substitution
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exit-codes" class="md-nav__link">
+    Exit codes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#arithmetic-operations" class="md-nav__link">
+    Arithmetic operations
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#commandline-arguments" class="md-nav__link">
+    Commandline arguments
+  </a>
+  
+    <nav class="md-nav" aria-label="Commandline arguments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#streams" class="md-nav__link">
+    Streams
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pipes" class="md-nav__link">
+    Pipes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#command-sequences" class="md-nav__link">
+    Command sequences
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conditional-execution" class="md-nav__link">
+    Conditional execution
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flow-control-for-and-while-loops" class="md-nav__link">
+    Flow control - for and while loops
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    Functions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#libraries-and-functions-from-other-scripts" class="md-nav__link">
+    Libraries and functions from other scripts
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/aravindhsampath/learngo/edit/master/docs/bashprimer.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  
+                
+                
+                <h1 id="bash-primer">Bash primer<a class="headerlink" href="#bash-primer" title="Permanent link">&para;</a></h1>
+<p>A quick primer to learn bash to automate stuff in Unix/Linux.</p>
+<p>Shell or Bash in this case is used as a universal glue language to issue a string of unix commands to the system.</p>
+<blockquote>
+<p><strong>Note: Dont use Bash everywhere!</strong></p>
+<p>Although Bash is universal and elegant to programmatically execute unix commands, and apply logic to them, it can quickly get cumbersome once you start doing complex things like working with floating point numbers or find yourself needing arrays or other sophisticated datastructures. Once your script gets more complex, stop and consider writing your program in higher level programming languages like Python or Go.</p>
+</blockquote>
+<h2 id="a-simple-bash-script">A simple bash script<a class="headerlink" href="#a-simple-bash-script" title="Permanent link">&para;</a></h2>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="ch">#!/bin/bash </span>
+<span class="nb">echo</span> <span class="s1">&#39;Hello World&#39;</span>
+</code></pre></div>
+</td></tr></table>
+
+<ul>
+<li>
+<p><code>#!/bin/bash</code> is called a shebang, which tells the system how to run this script in case it is executed directly on the shell.</p>
+</li>
+<li>
+<p>Save the above script as hello.sh and run it as below..</p>
+</li>
+</ul>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>chmod +x hello.sh
+./hello.sh
+</code></pre></div>
+</td></tr></table>
+
+<p>or </p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>bash hello.sh
+</code></pre></div>
+</td></tr></table>
+
+<h2 id="comments">Comments<a class="headerlink" href="#comments" title="Permanent link">&para;</a></h2>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="ch">#!/bin/bash </span>
+<span class="c1"># This is a comment</span>
+<span class="nb">echo</span> <span class="s1">&#39;Hello World&#39;</span>
+</code></pre></div>
+</td></tr></table>
+
+<h2 id="variables">Variables<a class="headerlink" href="#variables" title="Permanent link">&para;</a></h2>
+<p>Bash does not need variables to be declared of certain type. They may be numbers or characters.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="ch">#!/bin/bash </span>
+<span class="c1"># This is how you set a value to a variable</span>
+<span class="nv">myvariable</span><span class="o">=</span>Hello
+<span class="c1">## Note : Variables are globally scoped by default. </span>
+<span class="c1">## There is _no_ space before and after = sign.</span>
+
+<span class="c1"># This is how you get the value of the variable later in the script</span>
+<span class="nb">echo</span> <span class="nv">$myvariable</span>
+<span class="c1"># Another variable holding a directory path</span>
+<span class="nv">dir</span><span class="o">=</span>/usr/home/qgg/asampath
+ls -alh <span class="nv">$dir</span>
+
+<span class="c1"># Local variable</span>
+<span class="nb">local</span> <span class="nv">local_var</span><span class="o">=</span><span class="s2">&quot;I&#39;m a local value&quot;</span>
+</code></pre></div>
+</td></tr></table>
+
+<p>You can also set <em>environment</em> variables that are accessible to any program running in the current shell session.</p>
+<p>There are also special environment variables that are already available for your use. Some examples below.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="ch">#!/bin/bash </span>
+<span class="nb">export</span> <span class="nv">SECRET</span><span class="o">=</span><span class="s2">&quot;I&#39;m a secret string used later&quot;</span>
+<span class="nb">echo</span> <span class="nv">$SECRET</span>
+<span class="c1"># User&#39;s home directory</span>
+<span class="nb">echo</span> <span class="nv">$HOME</span>
+<span class="c1"># A colon-separated list of directories where</span>
+<span class="c1">#         the shell looks for programs or commands to execute from.</span>
+<span class="nb">echo</span> <span class="nv">$PATH</span>
+<span class="c1"># Current working directory</span>
+<span class="nb">echo</span> <span class="nv">$PWD</span>
+<span class="c1"># User ID(numeric UID) of the current user</span>
+<span class="nv">$UID</span>
+</code></pre></div>
+</td></tr></table>
+
+<h2 id="quotes">Quotes<a class="headerlink" href="#quotes" title="Permanent link">&para;</a></h2>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="ch">#!/bin/bash </span>
+
+<span class="c1"># Single quote and Double quote can be used interchangeably.</span>
+<span class="nv">firstname</span><span class="o">=</span><span class="s2">&quot;Aravindh&quot;</span>
+<span class="nv">lastname</span><span class="o">=</span><span class="s1">&#39;Sampathkumar&#39;</span>
+<span class="nb">echo</span> <span class="nv">$firstname</span>
+<span class="nb">echo</span> <span class="nv">$lastname</span>
+<span class="nb">echo</span> <span class="nv">$firstname</span> <span class="nv">$lastname</span>
+
+<span class="c1"># Escaping quotes - use alternative quotes to escape the ones you need. </span>
+<span class="nb">echo</span> <span class="s2">&quot;&#39;a&#39;&quot;</span>    <span class="c1"># Will print &#39;a&#39;  </span>
+<span class="nb">echo</span> <span class="s1">&#39;&quot;b&quot;&#39;</span>    <span class="c1"># Will print &quot;b&quot;</span>
+
+<span class="c1"># If you need both quotes in a string Escape it with backslash</span>
+<span class="nb">echo</span> <span class="s2">&quot;&#39;aaa&#39; \&quot;bbb\&quot;&quot;</span>   <span class="c1"># will print &#39;aaa&#39; &quot;bbb&quot;</span>
+</code></pre></div>
+</td></tr></table>
+
+<h2 id="command-substitution">Command substitution<a class="headerlink" href="#command-substitution" title="Permanent link">&para;</a></h2>
+<p>For when you want the output of a command to be stored as value of a variable.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="ch">#!/bin/bash </span>
+
+<span class="nv">myvar</span><span class="o">=</span><span class="k">$(</span> ls /etc <span class="p">|</span> wc -l <span class="k">)</span>
+<span class="nb">echo</span> There are <span class="nv">$myvar</span> entries in the directory /etc
+<span class="nv">now</span><span class="o">=</span><span class="k">$(</span>date +%T<span class="k">)</span>
+<span class="nb">echo</span> <span class="nv">$now</span> <span class="c1"># 19:08:26</span>
+</code></pre></div>
+</td></tr></table>
+
+<h2 id="exit-codes">Exit codes<a class="headerlink" href="#exit-codes" title="Permanent link">&para;</a></h2>
+<p>Every command returns an exit code (return status or exit status).</p>
+<p>A <code>0</code> exit code means successful completion of the command.</p>
+<p>A non-zero (1 to 255) exit code means a failed return from the command.</p>
+<p>Exit code is assigned to the $? environment variable. We can use this to test whether a script or a command finished successfully or not.</p>
+<p><strong>Example</strong>:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="nv">uid</span><span class="o">=</span><span class="k">$(</span>id -u asampath<span class="k">)</span>
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> -eq <span class="m">0</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+        <span class="nb">echo</span> <span class="s2">&quot;INFO: User account verified of existence. &quot;</span>
+<span class="k">else</span>
+        <span class="nb">echo</span> <span class="s2">&quot;ERROR: User account was not created properly. &quot;</span> &gt;<span class="p">&amp;</span><span class="m">2</span>
+        <span class="nb">exit</span> <span class="m">1</span>
+<span class="k">fi</span>
+</code></pre></div>
+</td></tr></table>
+
+<p><code>exit</code> keyword can be used to exit a function or terminate a script. In both cases it returns the exit code of the last command executed before <code>exit</code>.</p>
+<h2 id="arithmetic-operations">Arithmetic operations<a class="headerlink" href="#arithmetic-operations" title="Permanent link">&para;</a></h2>
+<p>Arithmetic expression must enclosed by <code>$(( ))</code></p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="nv">x</span><span class="o">=</span><span class="m">1</span>
+<span class="nv">y</span><span class="o">=</span><span class="m">2</span>
+<span class="nb">echo</span> <span class="k">$((</span> <span class="m">1</span> <span class="o">+</span> <span class="m">3</span> <span class="k">))</span>     <span class="c1"># 4</span>
+<span class="nb">echo</span> <span class="k">$((</span> <span class="o">++</span>x <span class="o">+</span> y++ <span class="k">))</span> <span class="c1"># 4</span>
+<span class="nb">echo</span> <span class="k">$((</span> x <span class="o">+</span> y <span class="k">))</span>     <span class="c1"># 5</span>
+</code></pre></div>
+</td></tr></table>
+
+<h2 id="commandline-arguments">Commandline arguments<a class="headerlink" href="#commandline-arguments" title="Permanent link">&para;</a></h2>
+<p>Sometimes, you need arguments to be passed to your script. For example copy <src_file> <dest_file></p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="ch">#!/bin/bash </span>
+
+cp <span class="nv">$1</span> <span class="nv">$2</span>
+<span class="nb">echo</span> Copied <span class="nv">$1</span> to <span class="nv">$2</span>
+</code></pre></div>
+</td></tr></table>
+
+<p>Save the above script as copy.sh and execute the above script passing the parameters as </p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>./copy.sh test1 test2
+</code></pre></div>
+</td></tr></table>
+
+<h3 id="streams">Streams<a class="headerlink" href="#streams" title="Permanent link">&para;</a></h3>
+<p>Streams are simply sequences of characters that may be redirected into files or other streams. </p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Descriptor</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>stdin</td>
+<td>Standard input</td>
+</tr>
+<tr>
+<td>1</td>
+<td>stdout</td>
+<td>Standard output</td>
+</tr>
+<tr>
+<td>2</td>
+<td>stderr</td>
+<td>Standard error</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Redirections</strong> are what makes streams useful. </p>
+<table>
+<thead>
+<tr>
+<th>Operator</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&gt;</code></td>
+<td>Redirect output</td>
+</tr>
+<tr>
+<td><code>2&gt;</code></td>
+<td>Redirect error</td>
+</tr>
+<tr>
+<td><code>&amp;&gt;</code></td>
+<td>Redirect output and error</td>
+</tr>
+<tr>
+<td><code>&gt;&gt;</code></td>
+<td>Redirect output but append to destination</td>
+</tr>
+<tr>
+<td><code>2&gt;&gt;</code></td>
+<td>Redirect error but append to destination</td>
+</tr>
+<tr>
+<td><code>&amp;&gt;&gt;</code></td>
+<td>Redirect output and error but append to destination</td>
+</tr>
+<tr>
+<td><code>&lt;</code></td>
+<td>Redirect input to this command/script</td>
+</tr>
+</tbody>
+</table>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="nb">command</span> &gt; out.log
+<span class="nb">command</span> &gt;&gt; out.log
+<span class="nb">command</span> <span class="m">2</span>&gt; err.log
+<span class="nb">command</span> <span class="m">2</span>&gt;&gt; err.log
+<span class="nb">command</span> <span class="p">&amp;</span>&gt; out_and_err.log
+<span class="nb">command</span> <span class="p">&amp;</span>&gt;&gt; out_and_err.log
+<span class="nb">command</span> <span class="m">2</span>&gt; err.log <span class="m">1</span>&gt; out.log
+<span class="nb">command</span> <span class="m">2</span>&gt;&gt; err.log <span class="m">1</span>&gt;&gt; out.log
+</code></pre></div>
+</td></tr></table>
+
+<p><strong>How about a T junction in streams?</strong></p>
+<p><code>| tee</code> is used to create T break in a stream - to redirect the same stream to 2 destinations. </p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="nb">echo</span> <span class="k">$(</span>cmd<span class="k">)</span> <span class="p">|</span> tee file1 file2
+
+<span class="c1"># Redirect both stdout and stderr to console and write them to a file</span>
+<span class="nb">command</span> <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span> <span class="p">|</span> tee out.log
+</code></pre></div>
+</td></tr></table>
+
+<h2 id="pipes">Pipes<a class="headerlink" href="#pipes" title="Permanent link">&para;</a></h2>
+<p>Pipes let us use the output of a program as the input of another.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="c1"># output of command1 is fed as input to command2....</span>
+command1 <span class="p">|</span> command2 <span class="p">|</span> command3
+
+<span class="c1"># Pipe the output of myst command to grep and filter on pattern R (running jobs)</span>
+myst <span class="p">|</span> grep R
+</code></pre></div>
+</td></tr></table>
+
+<blockquote>
+<p>Note: exit status of a pipeline is the exit code of the last command in the pipeline. If you need exit status to be the failure code if <em>any</em> of the commands in the pipe had failed, use the following shell option at the beginning of the script. </p>
+</blockquote>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="nb">set</span> -o pipefail
+</code></pre></div>
+</td></tr></table>
+
+<h2 id="command-sequences">Command sequences<a class="headerlink" href="#command-sequences" title="Permanent link">&para;</a></h2>
+<p>To execute multiple commands conditionally based on whether the prior command succeeded or not, you can use <code>;</code>, <code>&amp;</code>, <code>&amp;&amp;</code> or <code>||</code> operators.</p>
+<p>command2 will be executed after command1 regardless of success or failure of command1</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>command1 <span class="p">;</span> command2
+</code></pre></div>
+</td></tr></table>
+
+<p>command2 will be executed if, and only if, command1 finishes successfully (returns 0 exit status)</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>command1 <span class="o">&amp;&amp;</span> command2
+</code></pre></div>
+</td></tr></table>
+
+<p>command2 will be executed if, and only if, command1 finishes unsuccessfully (returns code of error)</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>command1 <span class="o">||</span> command2
+</code></pre></div>
+</td></tr></table>
+
+<p>If a command is terminated by the control operator &amp;, the shell executes the command asynchronously in a subshell (in the background)</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>command1 <span class="p">&amp;</span>
+command2 <span class="p">&amp;</span>
+command3 <span class="p">&amp;</span>
+</code></pre></div>
+</td></tr></table>
+
+<p>In the above example, all three commands run <em>concurrently</em> in the background in their own subshells.</p>
+<p>What if you want the "parent" script to wait until or some of the background tasks to finish before doing something else? </p>
+<p><code>wait</code> command is your answer.</p>
+<p><a href="https://stackoverflow.com/questions/1131484/wait-for-bash-background-jobs-in-script-to-be-finished">https://stackoverflow.com/questions/1131484/wait-for-bash-background-jobs-in-script-to-be-finished</a></p>
+<h2 id="conditional-execution">Conditional execution<a class="headerlink" href="#conditional-execution" title="Permanent link">&para;</a></h2>
+<p><code>if</code> statement and <code>case</code> statement - decide to perform an action or not.</p>
+<p>Expression should be enclosed in <code>[[ ]]</code></p>
+<p><strong>String based expressions</strong></p>
+<table>
+<thead>
+<tr>
+<th>Expression</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[[ -z STR ]]</td>
+<td>STR is empty</td>
+</tr>
+<tr>
+<td>[[ -n STR ]]</td>
+<td>STR is not empty</td>
+</tr>
+<tr>
+<td>[[ STR1 == STR2 ]]</td>
+<td>STR1 and STR2 are equal</td>
+</tr>
+<tr>
+<td>[[ STR1 != STR2 ]]</td>
+<td>STR1 and STR2 are not equal</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Numeric expressions</strong></p>
+<table>
+<thead>
+<tr>
+<th>Expression</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[[ NUM1 -eq NUM2 ]]</td>
+<td>NUM1 and NUM2 are equal</td>
+</tr>
+<tr>
+<td>[[ NUM1 -ne NUM2 ]]</td>
+<td>NUM1 and NUM2 are not equal</td>
+</tr>
+<tr>
+<td>[[ NUM1 -lt NUM2 ]]</td>
+<td>NUM1 is lesser than NUM2</td>
+</tr>
+<tr>
+<td>[[ NUM1 -le NUM2 ]]</td>
+<td>NUM1 is less than or equal to NUM2</td>
+</tr>
+<tr>
+<td>[[ NUM1 -gt NUM2 ]]</td>
+<td>NUM1 is greater than NUM2</td>
+</tr>
+<tr>
+<td>[[ NUM1 -ge NUM2 ]]</td>
+<td>NUM1 is greater than or equal to NUM2</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Logical evaluations</strong></p>
+<table>
+<thead>
+<tr>
+<th>Expression</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[[ ! EXPR ]]</td>
+<td>NOT operator. True if EXPR is false</td>
+</tr>
+<tr>
+<td>[[ EXPR1 ]] &amp;&amp; [[ EXPR2 ]]</td>
+<td>AND operator. True if both EXPR1 and EXPR2 are true</td>
+</tr>
+<tr>
+<td>[[ EXPR1 -a EXPR2 ]]</td>
+<td>AND operator. True if both EXPR1 and EXPR2 are true</td>
+</tr>
+<tr>
+<td>[[ EXPR1 ]]</td>
+<td></td>
+</tr>
+<tr>
+<td>[[ EXPR1 -o EXPR2 ]]</td>
+<td>OR operator. True if either EXPR1 or EXPR2 is true</td>
+</tr>
+</tbody>
+</table>
+<p><strong>File condition based expressions</strong></p>
+<table>
+<thead>
+<tr>
+<th>Expression</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[[ -e FILE ]]</td>
+<td>True if FILE exists</td>
+</tr>
+<tr>
+<td>[ -f FILE ]</td>
+<td>True if FILE exists and is a regular file</td>
+</tr>
+<tr>
+<td>[ -d FILE ]</td>
+<td> True if FILE exists and is a directory</td>
+</tr>
+<tr>
+<td>[ -r FILE ]</td>
+<td>True if FILE exists and is readable</td>
+</tr>
+<tr>
+<td>[ -w FILE ]</td>
+<td>True if FILE exists and is writable</td>
+</tr>
+<tr>
+<td>[ -x FILE ]</td>
+<td> True if FILE exists and is executable</td>
+</tr>
+<tr>
+<td>[ -L FILE ]</td>
+<td>True if FILE exists and is symbolic link</td>
+</tr>
+<tr>
+<td>[ FILE1 -nt FILE2 ]</td>
+<td>FILE1 is newer than FILE2.</td>
+</tr>
+<tr>
+<td>[ FILE1 -ot FILE2 ]</td>
+<td>FILE1 is older than FILE2.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Conditional execution</strong></p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="k">if</span> <span class="o">[[</span> <span class="m">1</span> -eq <span class="m">1</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span> <span class="nb">echo</span> <span class="s2">&quot;true&quot;</span><span class="p">;</span> <span class="k">fi</span>
+</code></pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="k">if</span> <span class="o">[[</span> <span class="m">1</span> -eq <span class="m">1</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+  <span class="nb">echo</span> <span class="s2">&quot;true&quot;</span>
+<span class="k">fi</span>
+</code></pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="k">if</span> <span class="o">[[</span> <span class="m">2</span> -ne <span class="m">1</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span> <span class="nb">echo</span> <span class="s2">&quot;true&quot;</span><span class="p">;</span> <span class="k">else</span> <span class="nb">echo</span> <span class="s2">&quot;false&quot;</span><span class="p">;</span> <span class="k">fi</span>
+</code></pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="k">if</span> <span class="o">[[</span> <span class="m">2</span> -ne <span class="m">1</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+  <span class="nb">echo</span> <span class="s2">&quot;true&quot;</span>
+<span class="k">else</span>
+  <span class="nb">echo</span> <span class="s2">&quot;false&quot;</span>
+<span class="k">fi</span>
+</code></pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="k">case</span> <span class="s2">&quot;</span><span class="nv">$action</span><span class="s2">&quot;</span> in
+  start <span class="p">|</span> up<span class="o">)</span>
+    programname start
+    <span class="p">;;</span>
+
+  *<span class="o">)</span>
+    <span class="nb">echo</span> <span class="s2">&quot;Error: Expected {start|up}&quot;</span>
+    <span class="p">;;</span>
+<span class="k">esac</span>
+</code></pre></div>
+</td></tr></table>
+
+<h2 id="flow-control-for-and-while-loops">Flow control - for and while loops<a class="headerlink" href="#flow-control-for-and-while-loops" title="Permanent link">&para;</a></h2>
+<p><strong>Range based for loops</strong></p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="k">for</span> i in <span class="o">{</span><span class="m">1</span>..5<span class="o">}</span><span class="p">;</span> <span class="k">do</span> <span class="nb">echo</span> <span class="nv">$i</span><span class="p">;</span> <span class="k">done</span>
+</code></pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="k">for</span> <span class="o">((</span> <span class="nv">i</span> <span class="o">=</span> <span class="m">0</span><span class="p">;</span> i &lt; <span class="m">10</span><span class="p">;</span> i++ <span class="o">))</span><span class="p">;</span> <span class="k">do</span>
+  <span class="nb">echo</span> <span class="nv">$i</span>
+<span class="k">done</span>
+</code></pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="k">for</span> i in <span class="o">{</span><span class="m">5</span>..50..5<span class="o">}</span><span class="p">;</span> <span class="k">do</span>
+    <span class="nb">echo</span> <span class="nv">$i</span>
+<span class="k">done</span>
+</code></pre></div>
+</td></tr></table>
+
+<p><strong>Looping action on files</strong></p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="k">for</span> FILE in <span class="nv">$HOME</span>/*.py<span class="p">;</span> <span class="k">do</span>
+  mv <span class="s2">&quot;</span><span class="nv">$FILE</span><span class="s2">&quot;</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span><span class="s2">/src/&quot;</span>
+  chmod +x <span class="s2">&quot;</span><span class="si">${</span><span class="nv">HOME</span><span class="si">}</span><span class="s2">/scripts/</span><span class="si">${</span><span class="nv">FILE</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="k">done</span>
+</code></pre></div>
+</td></tr></table>
+
+<p><strong>While loop</strong></p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="nv">x</span><span class="o">=</span><span class="m">0</span>
+<span class="k">while</span> <span class="o">[[</span> <span class="nv">$x</span> -lt <span class="m">10</span> <span class="o">]]</span><span class="p">;</span> <span class="k">do</span> <span class="c1"># value of x is less than 10</span>
+  <span class="nb">echo</span> <span class="nv">$x</span>
+  <span class="nv">x</span><span class="o">=</span><span class="k">$((</span> x <span class="o">+</span> <span class="m">1</span> <span class="k">))</span> <span class="c1"># increment x</span>
+<span class="k">done</span>
+</code></pre></div>
+</td></tr></table>
+
+<p><strong>Infinite loop</strong></p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="k">while</span> true<span class="p">;</span> <span class="k">do</span>
+  <span class="nb">echo</span> <span class="s2">&quot;Please hit ctrl+c to stop me!&quot;</span>
+<span class="k">done</span>
+</code></pre></div>
+</td></tr></table>
+
+<p><strong>Reading a file line-by-line</strong></p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="nv">file</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/data.txt&quot;</span>
+<span class="k">while</span> <span class="nv">IFS</span><span class="o">=</span> <span class="nb">read</span> -r line
+<span class="k">do</span>
+    <span class="nb">printf</span> <span class="s1">&#39;%s\n&#39;</span> <span class="s2">&quot;</span><span class="nv">$line</span><span class="s2">&quot;</span>
+<span class="k">done</span> &lt;<span class="s2">&quot;</span><span class="nv">$file</span><span class="s2">&quot;</span>
+</code></pre></div>
+</td></tr></table>
+
+<p>Split by fields</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="nv">file</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/data.txt&quot;</span>
+<span class="k">while</span> <span class="nv">IFS</span><span class="o">=</span>: <span class="nb">read</span> -r f1 f2 f3 f4 f5 f6 f7
+<span class="k">do</span>
+        <span class="c1"># display fields using f1, f2,..,f7</span>
+        <span class="nb">printf</span> <span class="s1">&#39;ID: %s, Name: %s, Email: %s\n&#39;</span> <span class="s2">&quot;</span><span class="nv">$f1</span><span class="s2">&quot;</span> <span class="s2">&quot;</span><span class="nv">$f7</span><span class="s2">&quot;</span> <span class="s2">&quot;</span><span class="nv">$f6</span><span class="s2">&quot;</span>
+<span class="k">done</span> &lt;<span class="s2">&quot;</span><span class="nv">$file</span><span class="s2">&quot;</span>
+</code></pre></div>
+</td></tr></table>
+
+<p><strong>Command output can be treated as files</strong></p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="nv">emails</span><span class="o">=</span><span class="k">$(</span>ipa user-find all<span class="p">|</span>grep Email<span class="p">|</span>awk <span class="s1">&#39;{print $2}&#39;</span><span class="k">)</span>
+<span class="k">while</span> <span class="nv">IFS</span><span class="o">=</span> <span class="nb">read</span> -r emailaddr
+<span class="k">do</span>
+    <span class="nb">printf</span> <span class="s1">&#39;Emailing to %s...\n&#39;</span> <span class="s2">&quot;</span><span class="nv">$emailaddr</span><span class="s2">&quot;</span>
+    ghpcmail -t <span class="nv">$emailaddr</span> <span class="s2">&quot;Hello&quot;</span>
+<span class="k">done</span> <span class="o">&lt;&lt;&lt;</span> <span class="s2">&quot;</span><span class="nv">$emails</span><span class="s2">&quot;</span>
+</code></pre></div>
+</td></tr></table>
+
+<p><strong>Using while loop to read file line-by-line</strong></p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>cat data.txt <span class="p">|</span> <span class="k">while</span> <span class="nb">read</span> line<span class="p">;</span> <span class="k">do</span>
+  <span class="nb">echo</span> <span class="nv">$line</span>
+<span class="k">done</span>
+</code></pre></div>
+</td></tr></table>
+
+<p><strong>Loop control</strong></p>
+<p><code>break</code> statement exits the current loop before its ending. </p>
+<p><code>continue</code> statement steps over one iteration.</p>
+<h2 id="functions">Functions<a class="headerlink" href="#functions" title="Permanent link">&para;</a></h2>
+<p>Functions must be declared before they are invoked.</p>
+<p>Functions can take arguments and return an <a href="#exit-codes">exit code</a>.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>hellofn<span class="o">()</span> <span class="o">{</span>
+    <span class="nb">echo</span> <span class="s2">&quot;hello </span><span class="nv">$1</span><span class="s2">&quot;</span>
+<span class="o">}</span>
+
+hellofn <span class="nv">$USER</span>
+</code></pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="c1"># Fn with explicit return codes</span>
+is_root_user<span class="o">(){</span>
+ <span class="o">[</span> <span class="k">$(</span>id -u<span class="k">)</span> -eq <span class="m">0</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="k">return</span> <span class="m">0</span> <span class="o">||</span> <span class="k">return</span> <span class="m">1</span>
+<span class="o">}</span>
+
+is_root_user <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="s2">&quot;run as root... OK&quot;</span> <span class="o">||</span> <span class="nb">echo</span> <span class="s2">&quot;Err: Need to be root&quot;</span>
+</code></pre></div>
+</td></tr></table>
+
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="c1"># Fn that returns a string instead of just exit code</span>
+in_users<span class="o">(){</span>
+        <span class="nv">users</span><span class="o">=</span><span class="k">$(</span>w<span class="p">|</span>awk <span class="s1">&#39;{print $1}&#39;</span><span class="p">|</span>tail --lines<span class="o">=</span>+3<span class="k">)</span>
+        <span class="nb">echo</span> <span class="nv">$users</span>
+<span class="o">}</span>
+<span class="nv">current_users</span><span class="o">=</span><span class="k">$(</span>in_users<span class="k">)</span>
+<span class="nb">echo</span> <span class="nv">$current_users</span>
+</code></pre></div>
+</td></tr></table>
+
+<h2 id="libraries-and-functions-from-other-scripts">Libraries and functions from other scripts<a class="headerlink" href="#libraries-and-functions-from-other-scripts" title="Permanent link">&para;</a></h2>
+<p>So, you want to create a library of functions that can be re-used in many scripts. </p>
+<p>Add a file such as mylib.sh that contains your re-usable functions.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="c1">#Purpose: Make a directory and enter into it</span>
+<span class="c1">#Args: Name of directory</span>
+<span class="c1">#Returns: nothing</span>
+mkcd<span class="o">()</span> <span class="o">{</span> mkdir -p <span class="nv">$1</span><span class="p">;</span> <span class="nb">cd</span> <span class="nv">$1</span> <span class="o">}</span>
+
+<span class="c1">#Purpose: Tar GZ compress a directory or file</span>
+<span class="c1">#Args: Name of file or directory</span>
+<span class="c1">#Returns: nothing</span>
+targz<span class="o">()</span> <span class="o">{</span> tar -zcvf <span class="nv">$1</span>.tar.gz <span class="nv">$1</span><span class="p">;</span> <span class="o">}</span>
+
+<span class="c1">#Purpose: Extract a Tar GZ archive to current location</span>
+<span class="c1">#Args: Name of tar.gz archive as xyz.tar.gz</span>
+<span class="c1">#Returns: nothing</span>
+untargz<span class="o">()</span> <span class="o">{</span> tar -zxvf <span class="nv">$1</span><span class="p">;</span> <span class="o">}</span>
+</code></pre></div>
+</td></tr></table>
+
+<p>Now, you can use these functions in any script as shown below..</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+. <span class="nv">$HOME</span>/mylib.sh
+mkcd new_dir_for_data
+targz DATA 
+untargz DATA.tar.gz
+</code></pre></div>
+</td></tr></table>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href=".." title="Home" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Home
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../cheatsheet/" title="cheat sheet" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                cheat sheet
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+
+
+<footer class="pv1 ph3 ph5-m ph6-l bg-black">
+  <div class="tc">
+      <a class="light-gray f3 f2-ns fw5 tc link dim dib mt4 mb4 mb0-l Alegreya-sans" href="mailto:aravindh@fastmail.com" >
+          aravindh@fastmail.com
+      </a>
+  </div>
+  <div class="tc mt3 mb3">
+      <a class="link near-white hover-blue dib h2 w2 mr3" href="https://github.com/aravindhsampath" title="GitHub">
+          <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.414"><path d="M8 0C3.58 0 0 3.582 0 8c0 3.535 2.292 6.533 5.47 7.59.4.075.547-.172.547-.385 0-.19-.007-.693-.01-1.36-2.226.483-2.695-1.073-2.695-1.073-.364-.924-.89-1.17-.89-1.17-.725-.496.056-.486.056-.486.803.056 1.225.824 1.225.824.714 1.223 1.873.87 2.33.665.072-.517.278-.87.507-1.07-1.777-.2-3.644-.888-3.644-3.953 0-.873.31-1.587.823-2.147-.083-.202-.358-1.015.077-2.117 0 0 .672-.215 2.2.82.638-.178 1.323-.266 2.003-.27.68.004 1.364.092 2.003.27 1.527-1.035 2.198-.82 2.198-.82.437 1.102.163 1.915.08 2.117.513.56.823 1.274.823 2.147 0 3.073-1.87 3.75-3.653 3.947.287.246.543.735.543 1.48 0 1.07-.01 1.933-.01 2.195 0 .215.144.463.55.385C13.71 14.53 16 11.534 16 8c0-4.418-3.582-8-8-8"/></svg>
+      </a>
+      <a href="https://www.facebook.com/aravindh.sathish" class="link dim dib mr3 near-white" title="Impossible Labs on Facebook">
+          <svg class="db w2 h2" data-icon="facebook" viewBox="0 0 32 32" fill="currentColor">
+            <title >facebook icon</title>
+            <path d="M8 12 L13 12 L13 8 C13 2 17 1 24 2 L24 7 C20 7 19 7 19 10 L19 12 L24 12 L23 18 L19 18 L19 30 L13 30 L13 18 L8 18 z"> 
+              </path>
+          </svg>
+      </a>
+      <a href="https://twitter.com/reacharavindh" class="link dim dib mr3 near-white">
+          <svg class="db w2 h2" data-icon="twitter" viewBox="0 0 32 32"
+              fill="currentColor" >
+              <title >twitter icon</title>
+              <path d="M2 4 C6 8 10 12 15 11 A6 6 0 0 1 22 4 A6 6 0 0 1 26 6 A8 8 0 0 0 31 4 A8 8 0 0 1 28 8 A8 8 0 0 0 32 7 A8 8 0 0 1 28 11 A18 18 0 0 1 10 30 A18 18 0 0 1 0 27 A12 12 0 0 0 8 24 A8 8 0 0 1 3 20 A8 8 0 0 0 6 19.5 A8 8 0 0 1 0 12 A8 8 0 0 0 3 13 A8 8 0 0 1 2 4">
+              </path>
+          </svg>
+      </a>
+      <a href="https://www.linkedin.com/in/aravindhsampath/" class="link dim dib black-30">
+          <svg class="db w2 h2" x="0px" y="0px" viewBox="0 0 48 48" >
+              <linearGradient gradientUnits="userSpaceOnUse" x1="23.9995"
+                y1="0" x2="23.9995" y2="48.0005" >
+                <stop offset="0" ></stop>
+                <stop offset="1" ></stop>
+              </linearGradient>
+              <path fill="currentColor" d="M48,42c0,3.313-2.687,6-6,6H6c-3.313,0-6-2.687-6-6V6 c0-3.313,2.687-6,6-6h36c3.313,0,6,2.687,6,6V42z">
+              </path>
+              <g >
+                <g >
+                    <path fill="#FFFFFF" d="M15.731,11.633c-1.608,0-2.658,1.083-2.625,2.527c-0.033,1.378,1.018,2.494,2.593,2.494 c1.641,0,2.691-1.116,2.691-2.494C18.357,12.716,17.339,11.633,15.731,11.633z M13.237,35.557h4.988V18.508h-4.988V35.557z M31.712,18.748c-1.595,0-3.222-0.329-4.956,2.36h-0.099l-0.087-2.599h-4.417c0.065,1.411,0.074,3.518,0.074,5.52v11.529h4.988 v-9.854c0-0.46,0.065-0.919,0.196-1.248c0.328-0.919,1.149-1.871,2.527-1.871c1.805,0,2.527,1.411,2.527,3.479v9.494h4.988V25.439 C37.455,20.713,34.993,18.748,31.712,18.748z">
+                    </path>
+                </g>
+            </g>
+          </svg>
+      </a>
+    </div>
+
+</footer>
+
+
+
+
+
+
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.d710d30a.min.js"></script>
+      <script src="../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "..",
+          features: [],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.27c6a5e6.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

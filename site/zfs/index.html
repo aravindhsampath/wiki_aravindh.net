@@ -1,0 +1,1557 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <link rel="canonical" href="https://aravindh.net/wiki/zfs/">
+      
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.2.0">
+    
+    
+      
+        <title>ZFS - Aravindh.net - wiki</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.18ac144a.min.css">
+      
+        <link rel="stylesheet" href="../assets/stylesheets/palette.616af814.min.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#03a9f4">
+      
+    
+    
+    
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="light-blue" data-md-color-accent="black">
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#zfs" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css"/>
+<noscript id="deferred-styles">
+  <link rel="stylesheet" type="text/css" href="https://aravindh.net/css/fonts.css"/>
+</noscript>
+<link rel="stylesheet" type="text/css" href="https://aravindh.net/css/fonts.css"/>
+<style>
+      .Alegreya-sans
+      {
+          font-family:    'Alegreya Sans',serif;
+          /*font-weight:    400; */
+      }
+      .sysui
+      {
+          font-family: -apple-system, system-ui, BlinkMacSystemFont, 
+       'Segoe UI', Roboto, 'Helvetica Neue', 
+       Ubuntu, Arial, sans-serif;
+      }
+</style>
+
+<nav class="pa2 pa3-ns tc">
+  <!-- <a class="link dim black b f1 f-headline-ns tc db mb3 mb4-ns" href="#" title="Home">Site Name</a> -->
+  <h1 class="mt2 mb0 Chelsea fw4 f2 black dark-blue b">Aravindh.net</h1>
+  <div>
+    <h2 class="mt2 mb0 f7 fw4 ttu tracked Alegreya-sans">/share/mind</h2>
+  </div>
+  <nav class="bt bb tc mw7 center mt2 mt3-ns">
+        		<a class="f7 f6-l fw5 link bg-animate black-80 hover-bg-light-green dib pa1 pa3-ns ph4-l Alegreya-sans" href="/">Home</a>
+        		<a class="f7 f6-l fw5 link bg-animate black-80 hover-bg-light-green dib pa1 pa3-ns ph4-l Alegreya-sans" href="/about/">About</a>
+        		<a class="f7 f6-l fw5 link bg-animate black-80 hover-bg-light-green dib pa1 pa3-ns ph4-l Alegreya-sans" href="/shelf/">Shelf</a>
+            <a class="f7 f6-l fw5 link bg-animate black-80 hover-bg-light-green dib pa1 pa3-ns ph4-l Alegreya-sans" href="/wiki/">Wiki</a>
+        		<a class="f7 f6-l fw5 link bg-animate black-80 hover-bg-light-green dib pa1 pa3-ns ph4-l Alegreya-sans" href="/projects/">Projects</a>
+        		<a class="f7 f6-l fw5 link bg-animate black-80 hover-bg-light-green dib pa1 pa3-ns ph4-l Alegreya-sans" href="/contact/">Contact</a>
+   </nav>
+</nav>
+
+<header class="md-header center w-100 bg-white" data-md-component="header">
+	<nav class="md-header-nav md-grid">
+    <label class="md-header-nav__button md-icon bg-near-black" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+	<div class="center">
+    
+	
+      <label class="md-header-nav__button md-icon bg-near-black" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form bg-near-black" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+	</div>
+   	</nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://aravindh.net/wiki" title="Aravindh.net - wiki" class="md-nav__button md-logo" aria-label="Aravindh.net - wiki">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Aravindh.net - wiki
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/aravindhsampath/learngo/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    aravindhsampath/learngo
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../bashprimer/" title="Bash primer" class="md-nav__link">
+      Bash primer
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../cheatsheet/" title="cheat sheet" class="md-nav__link">
+      cheat sheet
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../freebsd/" title="Freebsd" class="md-nav__link">
+      Freebsd
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../linuxadmin/" title="linuxadmin" class="md-nav__link">
+      linuxadmin
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../perf/" title="perf" class="md-nav__link">
+      perf
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../rsync/" title="Rsync" class="md-nav__link">
+      Rsync
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../slurm/" title="Slurm" class="md-nav__link">
+      Slurm
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        ZFS
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="ZFS" class="md-nav__link md-nav__link--active">
+      ZFS
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#simple-view-of-zfs" class="md-nav__link">
+    Simple view of ZFS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#show-all-datasets-and-how-full-they-are" class="md-nav__link">
+    Show all datasets and how full they are
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#list-all-snapshots-and-show-how-much-space-they-occupy" class="md-nav__link">
+    List all snapshots and show how much space they occupy :
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#show-status-of-all-disks-in-zpools" class="md-nav__link">
+    Show status of all disks in ZPOOLs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#check-compression-efficiency-on-a-dataset" class="md-nav__link">
+    Check compression efficiency on a dataset
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#view-of-all-zfs-related-data-in-freebsd-system" class="md-nav__link">
+    View of all ZFS related data in FreeBSD system
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#view-the-current-utilisation-of-disk-io-bandwidth" class="md-nav__link">
+    View the current utilisation of disk IO bandwidth
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#zfs-and-nfs" class="md-nav__link">
+    ZFS and NFS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-a-zfs-dataset" class="md-nav__link">
+    Creating a ZFS dataset
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#crucial-datasets-where-data-integrity-takes-double-priority-over-performance" class="md-nav__link">
+    Crucial datasets where data integrity takes double priority over performance
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#zfs-tunables" class="md-nav__link">
+    ZFS Tunables
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-disks-primitively" class="md-nav__link">
+    Testing disks primitively
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#simple-view-of-zfs" class="md-nav__link">
+    Simple view of ZFS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#show-all-datasets-and-how-full-they-are" class="md-nav__link">
+    Show all datasets and how full they are
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#list-all-snapshots-and-show-how-much-space-they-occupy" class="md-nav__link">
+    List all snapshots and show how much space they occupy :
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#show-status-of-all-disks-in-zpools" class="md-nav__link">
+    Show status of all disks in ZPOOLs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#check-compression-efficiency-on-a-dataset" class="md-nav__link">
+    Check compression efficiency on a dataset
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#view-of-all-zfs-related-data-in-freebsd-system" class="md-nav__link">
+    View of all ZFS related data in FreeBSD system
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#view-the-current-utilisation-of-disk-io-bandwidth" class="md-nav__link">
+    View the current utilisation of disk IO bandwidth
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#zfs-and-nfs" class="md-nav__link">
+    ZFS and NFS
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-a-zfs-dataset" class="md-nav__link">
+    Creating a ZFS dataset
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#crucial-datasets-where-data-integrity-takes-double-priority-over-performance" class="md-nav__link">
+    Crucial datasets where data integrity takes double priority over performance
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#zfs-tunables" class="md-nav__link">
+    ZFS Tunables
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-disks-primitively" class="md-nav__link">
+    Testing disks primitively
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/aravindhsampath/learngo/edit/master/docs/zfs.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  
+                
+                
+                <h1 id="zfs">ZFS<a class="headerlink" href="#zfs" title="Permanent link">&para;</a></h1>
+<p>All things ZFS. </p>
+<p>I use ZFS in production at work. Here are some notes on this wonderful piece of software. </p>
+<h2 id="simple-view-of-zfs">Simple view of ZFS<a class="headerlink" href="#simple-view-of-zfs" title="Permanent link">&para;</a></h2>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>root@ironbank01:~ <span class="c1"># zpool list</span>
+NAME        SIZE  ALLOC   FREE  CKPOINT  EXPANDSZ   FRAG    CAP  DEDUP  HEALTH  ALTROOT
+iron_bank   587T   107T   481T        -         -     <span class="m">0</span>%    <span class="m">18</span>%  <span class="m">1</span>.00x  ONLINE  -
+</code></pre></div>
+</td></tr></table>
+
+<p>CAP is short for capacity. This filer is 18% full.</p>
+<h2 id="show-all-datasets-and-how-full-they-are">Show all datasets and how full they are<a class="headerlink" href="#show-all-datasets-and-how-full-they-are" title="Permanent link">&para;</a></h2>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>root@ironbank01:~ <span class="c1"># zfs list</span>
+NAME                              USED  AVAIL  REFER  MOUNTPOINT
+iron_bank                        <span class="m">71</span>.0T   308T   192K  /iron_bank
+~~~~~~~~~~~~~~~~~~~~~ Trimmmed <span class="k">for</span> brevity ~~~~~~~~~~~~~~~~~~~~~
+</code></pre></div>
+</td></tr></table>
+
+<p>Datasets are cheap with ZFS and provide granular control over tunables specific to the workload. For example a dataset with research data can have a record size of 1 MiB resulting in better seq.read and seq.write performance, whereas a dataset with home directory of a user can be left with a default recordsize of 128 KiB for better overall performance.</p>
+<h2 id="list-all-snapshots-and-show-how-much-space-they-occupy">List all snapshots and show how much space they occupy :<a class="headerlink" href="#list-all-snapshots-and-show-how-much-space-they-occupy" title="Permanent link">&para;</a></h2>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>zfs list -t snapshot
+</code></pre></div>
+</td></tr></table>
+
+<h2 id="show-status-of-all-disks-in-zpools">Show status of all disks in ZPOOLs<a class="headerlink" href="#show-status-of-all-disks-in-zpools" title="Permanent link">&para;</a></h2>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>root@ironbank01:~ <span class="c1"># zpool status</span>
+  pool: iron_bank
+ state: ONLINE
+  scan: none requested
+config:
+
+    NAME        STATE     READ WRITE CKSUM
+    iron_bank   ONLINE       <span class="m">0</span>     <span class="m">0</span>     <span class="m">0</span>
+      raidz2-0  ONLINE       <span class="m">0</span>     <span class="m">0</span>     <span class="m">0</span>
+        da0     ONLINE       <span class="m">0</span>     <span class="m">0</span>     <span class="m">0</span>
+        da1     ONLINE       <span class="m">0</span>     <span class="m">0</span>     <span class="m">0</span>
+        da2     ONLINE       <span class="m">0</span>     <span class="m">0</span>     <span class="m">0</span>
+        da90    ONLINE       <span class="m">0</span>     <span class="m">0</span>     <span class="m">0</span>
+        da91    ONLINE       <span class="m">0</span>     <span class="m">0</span>     <span class="m">0</span>
+        da92    ONLINE       <span class="m">0</span>     <span class="m">0</span>     <span class="m">0</span>
+      raidz2-2  ONLINE       <span class="m">0</span>     <span class="m">0</span>     <span class="m">0</span>
+        da3     ONLINE       <span class="m">0</span>     <span class="m">0</span>     <span class="m">0</span>
+~~~~~~~~~~~~~~~~~~~~~ Trimmmed <span class="k">for</span> brevity ~~~~~~~~~~~~~~~~~~~~~
+    logs
+      nvd0      ONLINE       <span class="m">0</span>     <span class="m">0</span>     <span class="m">0</span>
+    spares
+      da27      AVAIL   
+      da117     AVAIL   
+
+errors: No known data errors
+</code></pre></div>
+</td></tr></table>
+
+<h2 id="check-compression-efficiency-on-a-dataset">Check compression efficiency on a dataset<a class="headerlink" href="#check-compression-efficiency-on-a-dataset" title="Permanent link">&para;</a></h2>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>zfs get used,compressratio,compression,logicalused iron_bank/qgg
+NAME           PROPERTY       VALUE     SOURCE
+iron_bank/qgg  used           <span class="m">60</span>.2T     -
+iron_bank/qgg  compressratio  <span class="m">1</span>.19x     -
+iron_bank/qgg  compression    lz4       <span class="nb">local</span>
+iron_bank/qgg  logicalused    <span class="m">71</span>.0T     -
+</code></pre></div>
+</td></tr></table>
+
+<p>Ofcourse, the compression ratio depends on the type of data ZFS is dealt with. But, ZFS is smart enough to not burn CPU cycles when the data is already compressed and it knows when to give up. So, keep compression ON everywhere.</p>
+<h2 id="view-of-all-zfs-related-data-in-freebsd-system">View of all ZFS related data in FreeBSD system<a class="headerlink" href="#view-of-all-zfs-related-data-in-freebsd-system" title="Permanent link">&para;</a></h2>
+<p>Install ZFS-stats:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>pkg install zfs-stats
+</code></pre></div>
+</td></tr></table>
+
+<p>Get info:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>root@ironbank01:~ <span class="c1"># zfs-stats -a</span>
+
+------------------------------------------------------------------------
+ZFS Subsystem Report                Wed Jul <span class="m">17</span> <span class="m">17</span>:09:29 <span class="m">2019</span>
+------------------------------------------------------------------------
+
+System Information:
+
+    Kernel Version:             <span class="m">1200086</span> <span class="o">(</span>osreldate<span class="o">)</span>
+    Hardware Platform:          amd64
+    Processor Architecture:         amd64
+
+    ZFS Storage pool Version:       <span class="m">5000</span>
+    ZFS Filesystem Version:         <span class="m">5</span>
+
+FreeBSD <span class="m">12</span>.0-RELEASE-p3 GENERIC
+ <span class="m">5</span>:09PM  up <span class="m">27</span> days,  <span class="m">5</span>:53, <span class="m">1</span> user, load averages: <span class="m">0</span>.12, <span class="m">0</span>.17, <span class="m">0</span>.09
+
+------------------------------------------------------------------------
+
+System Memory:
+
+    <span class="m">0</span>.00%   <span class="m">2</span>.14    MiB Active, <span class="m">0</span>.07%   <span class="m">275</span>.17  MiB Inact
+    <span class="m">97</span>.55%  <span class="m">364</span>.91  GiB Wired,  <span class="m">0</span>.00%   <span class="m">0</span> Cache
+    <span class="m">2</span>.32%   <span class="m">8</span>.70    GiB Free,   <span class="m">0</span>.05%   <span class="m">206</span>.81  MiB Gap
+
+    Real Installed:             <span class="m">384</span>.00  GiB
+    Real Available:         <span class="m">99</span>.91%  <span class="m">383</span>.65  GiB
+    Real Managed:           <span class="m">97</span>.50%  <span class="m">374</span>.07  GiB
+
+    Logical Total:              <span class="m">384</span>.00  GiB
+    Logical Used:           <span class="m">97</span>.67%  <span class="m">375</span>.04  GiB
+    Logical Free:           <span class="m">2</span>.33%   <span class="m">8</span>.96    GiB
+
+Kernel Memory:                  <span class="m">6</span>.02    GiB
+    Data:               <span class="m">99</span>.36%  <span class="m">5</span>.98    GiB
+    Text:               <span class="m">0</span>.64%   <span class="m">39</span>.24   MiB
+
+Kernel Memory Map:              <span class="m">374</span>.07  GiB
+    Size:               <span class="m">97</span>.33%  <span class="m">364</span>.09  GiB
+    Free:               <span class="m">2</span>.67%   <span class="m">9</span>.98    GiB
+
+------------------------------------------------------------------------
+
+ARC Summary: <span class="o">(</span>HEALTHY<span class="o">)</span>
+    Memory Throttle Count:          <span class="m">0</span>
+
+ARC Misc:
+    Deleted:                <span class="m">86</span>.17m
+    Recycle Misses:             <span class="m">0</span>
+    Mutex Misses:               <span class="m">9</span>.47k
+    Evict Skips:                <span class="m">0</span>
+
+ARC Size:               <span class="m">90</span>.67%  <span class="m">335</span>.47  GiB
+    Target Size: <span class="o">(</span>Adaptive<span class="o">)</span>     <span class="m">90</span>.72%  <span class="m">335</span>.66  GiB
+    Min Size <span class="o">(</span>Hard Limit<span class="o">)</span>:      <span class="m">54</span>.05%  <span class="m">200</span>.00  GiB
+    Max Size <span class="o">(</span>High Water<span class="o">)</span>:      <span class="m">1</span>:1 <span class="m">370</span>.00  GiB
+
+ARC Size Breakdown:
+    Recently Used Cache Size:   <span class="m">92</span>.44%  <span class="m">310</span>.29  GiB
+    Frequently Used Cache Size: <span class="m">7</span>.56%   <span class="m">25</span>.37   GiB
+
+ARC Hash Breakdown:
+    Elements Max:               <span class="m">5</span>.97m
+    Elements Current:       <span class="m">98</span>.82%  <span class="m">5</span>.90m
+    Collisions:             <span class="m">8</span>.31m
+    Chain Max:              <span class="m">5</span>
+    Chains:                 <span class="m">243</span>.32k
+
+------------------------------------------------------------------------
+
+ARC Efficiency:                 <span class="m">2</span>.82b
+    Cache Hit Ratio:        <span class="m">98</span>.39%  <span class="m">2</span>.78b
+    Cache Miss Ratio:       <span class="m">1</span>.61%   <span class="m">45</span>.39m
+    Actual Hit Ratio:       <span class="m">98</span>.32%  <span class="m">2</span>.78b
+
+    Data Demand Efficiency:     <span class="m">100</span>.00% <span class="m">51</span>.29m
+
+    CACHE HITS BY CACHE LIST:
+      Anonymously Used:     <span class="m">0</span>.06%   <span class="m">1</span>.57m
+      Most Recently Used:       <span class="m">9</span>.05%   <span class="m">251</span>.42m
+      Most Frequently Used:     <span class="m">90</span>.88%  <span class="m">2</span>.53b
+      Most Recently Used Ghost: <span class="m">0</span>.00%   <span class="m">0</span>
+      Most Frequently Used Ghost:   <span class="m">0</span>.01%   <span class="m">342</span>.08k
+
+    CACHE HITS BY DATA TYPE:
+      Demand Data:          <span class="m">1</span>.85%   <span class="m">51</span>.29m
+      Prefetch Data:        <span class="m">0</span>.00%   <span class="m">0</span>
+      Demand Metadata:      <span class="m">98</span>.06%  <span class="m">2</span>.72b
+      Prefetch Metadata:        <span class="m">0</span>.10%   <span class="m">2</span>.75m
+
+    CACHE MISSES BY DATA TYPE:
+      Demand Data:          <span class="m">0</span>.00%   <span class="m">0</span>
+      Prefetch Data:        <span class="m">0</span>.00%   <span class="m">0</span>
+      Demand Metadata:      <span class="m">99</span>.03%  <span class="m">44</span>.95m
+      Prefetch Metadata:        <span class="m">0</span>.97%   <span class="m">441</span>.19k
+
+------------------------------------------------------------------------
+
+L2ARC is disabled
+
+------------------------------------------------------------------------
+
+File-Level Prefetch: <span class="o">(</span>HEALTHY<span class="o">)</span>
+
+DMU Efficiency:                 <span class="m">1</span>.29b
+    Hit Ratio:          <span class="m">5</span>.97%   <span class="m">77</span>.29m
+    Miss Ratio:         <span class="m">94</span>.03%  <span class="m">1</span>.22b
+
+    Colinear:               <span class="m">0</span>
+      Hit Ratio:            <span class="m">100</span>.00% <span class="m">0</span>
+      Miss Ratio:           <span class="m">100</span>.00% <span class="m">0</span>
+
+    Stride:                 <span class="m">0</span>
+      Hit Ratio:            <span class="m">100</span>.00% <span class="m">0</span>
+      Miss Ratio:           <span class="m">100</span>.00% <span class="m">0</span>
+
+DMU Misc:
+    Reclaim:                <span class="m">0</span>
+      Successes:            <span class="m">100</span>.00% <span class="m">0</span>
+      Failures:         <span class="m">100</span>.00% <span class="m">0</span>
+
+    Streams:                <span class="m">0</span>
+      +Resets:          <span class="m">100</span>.00% <span class="m">0</span>
+      -Resets:          <span class="m">100</span>.00% <span class="m">0</span>
+      Bogus:                <span class="m">0</span>
+
+------------------------------------------------------------------------
+
+VDEV Cache Summary:             <span class="m">1</span>.01m
+    Hit Ratio:          <span class="m">14</span>.99%  <span class="m">150</span>.83k
+    Miss Ratio:         <span class="m">82</span>.75%  <span class="m">832</span>.62k
+    Delegations:            <span class="m">2</span>.25%   <span class="m">22</span>.69k
+
+------------------------------------------------------------------------
+
+ZFS Tunables <span class="o">(</span>sysctl<span class="o">)</span>:
+    kern.maxusers                           <span class="m">24889</span>
+    vm.kmem_size                            <span class="m">401658576896</span>
+    vm.kmem_size_scale                      <span class="m">1</span>
+    vm.kmem_size_min                        <span class="m">0</span>
+    vm.kmem_size_max                        <span class="m">1319413950874</span>
+    vfs.zfs.trim.max_interval               <span class="m">1</span>
+    vfs.zfs.trim.timeout                    <span class="m">30</span>
+    vfs.zfs.trim.txg_delay                  <span class="m">32</span>
+    vfs.zfs.trim.enabled                    <span class="m">1</span>
+    vfs.zfs.vol.immediate_write_sz          <span class="m">32768</span>
+    vfs.zfs.vol.unmap_sync_enabled          <span class="m">0</span>
+    vfs.zfs.vol.unmap_enabled               <span class="m">1</span>
+    vfs.zfs.vol.recursive                   <span class="m">0</span>
+    vfs.zfs.vol.mode                        <span class="m">1</span>
+    vfs.zfs.version.zpl                     <span class="m">5</span>
+    vfs.zfs.version.spa                     <span class="m">5000</span>
+    vfs.zfs.version.acl                     <span class="m">1</span>
+    vfs.zfs.version.ioctl                   <span class="m">7</span>
+    vfs.zfs.debug                           <span class="m">0</span>
+    vfs.zfs.super_owner                     <span class="m">0</span>
+    vfs.zfs.immediate_write_sz              <span class="m">32768</span>
+    vfs.zfs.sync_pass_rewrite               <span class="m">2</span>
+    vfs.zfs.sync_pass_dont_compress         <span class="m">5</span>
+    vfs.zfs.sync_pass_deferred_free         <span class="m">2</span>
+    vfs.zfs.zio.dva_throttle_enabled        <span class="m">1</span>
+    vfs.zfs.zio.exclude_metadata            <span class="m">0</span>
+    vfs.zfs.zio.use_uma                     <span class="m">1</span>
+    vfs.zfs.zil_slog_bulk                   <span class="m">786432</span>
+    vfs.zfs.cache_flush_disable             <span class="m">0</span>
+    vfs.zfs.zil_replay_disable              <span class="m">0</span>
+    vfs.zfs.standard_sm_blksz               <span class="m">131072</span>
+    vfs.zfs.dtl_sm_blksz                    <span class="m">4096</span>
+    vfs.zfs.min_auto_ashift                 <span class="m">9</span>
+    vfs.zfs.max_auto_ashift                 <span class="m">13</span>
+    vfs.zfs.vdev.trim_max_pending           <span class="m">10000</span>
+    vfs.zfs.vdev.bio_delete_disable         <span class="m">0</span>
+    vfs.zfs.vdev.bio_flush_disable          <span class="m">0</span>
+    vfs.zfs.vdev.def_queue_depth            <span class="m">32</span>
+    vfs.zfs.vdev.queue_depth_pct            <span class="m">1000</span>
+    vfs.zfs.vdev.write_gap_limit            <span class="m">4096</span>
+    vfs.zfs.vdev.read_gap_limit             <span class="m">32768</span>
+    vfs.zfs.vdev.aggregation_limit          <span class="m">1048576</span>
+    vfs.zfs.vdev.initializing_max_active    <span class="m">1</span>
+    vfs.zfs.vdev.initializing_min_active    <span class="m">1</span>
+    vfs.zfs.vdev.removal_max_active         <span class="m">2</span>
+    vfs.zfs.vdev.removal_min_active         <span class="m">1</span>
+    vfs.zfs.vdev.trim_max_active            <span class="m">64</span>
+    vfs.zfs.vdev.trim_min_active            <span class="m">1</span>
+    vfs.zfs.vdev.scrub_max_active           <span class="m">2</span>
+    vfs.zfs.vdev.scrub_min_active           <span class="m">1</span>
+    vfs.zfs.vdev.async_write_max_active     <span class="m">10</span>
+    vfs.zfs.vdev.async_write_min_active     <span class="m">1</span>
+    vfs.zfs.vdev.async_read_max_active      <span class="m">3</span>
+    vfs.zfs.vdev.async_read_min_active      <span class="m">1</span>
+    vfs.zfs.vdev.sync_write_max_active      <span class="m">10</span>
+    vfs.zfs.vdev.sync_write_min_active      <span class="m">10</span>
+    vfs.zfs.vdev.sync_read_max_active       <span class="m">10</span>
+    vfs.zfs.vdev.sync_read_min_active       <span class="m">10</span>
+    vfs.zfs.vdev.max_active                 <span class="m">1000</span>
+    vfs.zfs.vdev.async_write_active_max_dirty_percent60
+    vfs.zfs.vdev.async_write_active_min_dirty_percent30
+    vfs.zfs.vdev.mirror.non_rotating_seek_inc1
+    vfs.zfs.vdev.mirror.non_rotating_inc    <span class="m">0</span>
+    vfs.zfs.vdev.mirror.rotating_seek_offset1048576
+    vfs.zfs.vdev.mirror.rotating_seek_inc   <span class="m">5</span>
+    vfs.zfs.vdev.mirror.rotating_inc        <span class="m">0</span>
+    vfs.zfs.vdev.trim_on_init               <span class="m">1</span>
+    vfs.zfs.vdev.cache.bshift               <span class="m">16</span>
+    vfs.zfs.vdev.cache.size                 <span class="m">16777216</span>
+    vfs.zfs.vdev.cache.max                  <span class="m">16384</span>
+    vfs.zfs.vdev.default_ms_shift           <span class="m">29</span>
+    vfs.zfs.vdev.min_ms_count               <span class="m">16</span>
+    vfs.zfs.vdev.max_ms_count               <span class="m">200</span>
+    vfs.zfs.txg.timeout                     <span class="m">5</span>
+    vfs.zfs.space_map_ibs                   <span class="m">14</span>
+    vfs.zfs.spa_allocators                  <span class="m">4</span>
+    vfs.zfs.spa_min_slop                    <span class="m">134217728</span>
+    vfs.zfs.spa_slop_shift                  <span class="m">5</span>
+    vfs.zfs.spa_asize_inflation             <span class="m">24</span>
+    vfs.zfs.deadman_enabled                 <span class="m">0</span>
+    vfs.zfs.deadman_checktime_ms            <span class="m">5000</span>
+    vfs.zfs.deadman_synctime_ms             <span class="m">1000000</span>
+    vfs.zfs.debugflags                      <span class="m">0</span>
+    vfs.zfs.recover                         <span class="m">0</span>
+    vfs.zfs.spa_load_verify_data            <span class="m">1</span>
+    vfs.zfs.spa_load_verify_metadata        <span class="m">1</span>
+    vfs.zfs.spa_load_verify_maxinflight     <span class="m">10000</span>
+    vfs.zfs.max_missing_tvds_scan           <span class="m">0</span>
+    vfs.zfs.max_missing_tvds_cachefile      <span class="m">2</span>
+    vfs.zfs.max_missing_tvds                <span class="m">0</span>
+    vfs.zfs.spa_load_print_vdev_tree        <span class="m">0</span>
+    vfs.zfs.ccw_retry_interval              <span class="m">300</span>
+    vfs.zfs.check_hostid                    <span class="m">1</span>
+    vfs.zfs.mg_fragmentation_threshold      <span class="m">85</span>
+    vfs.zfs.mg_noalloc_threshold            <span class="m">0</span>
+    vfs.zfs.condense_pct                    <span class="m">200</span>
+    vfs.zfs.metaslab_sm_blksz               <span class="m">4096</span>
+    vfs.zfs.metaslab.bias_enabled           <span class="m">1</span>
+    vfs.zfs.metaslab.lba_weighting_enabled  <span class="m">1</span>
+    vfs.zfs.metaslab.fragmentation_factor_enabled1
+    vfs.zfs.metaslab.preload_enabled        <span class="m">1</span>
+    vfs.zfs.metaslab.preload_limit          <span class="m">3</span>
+    vfs.zfs.metaslab.unload_delay           <span class="m">8</span>
+    vfs.zfs.metaslab.load_pct               <span class="m">50</span>
+    vfs.zfs.metaslab.min_alloc_size         <span class="m">33554432</span>
+    vfs.zfs.metaslab.df_free_pct            <span class="m">4</span>
+    vfs.zfs.metaslab.df_alloc_threshold     <span class="m">131072</span>
+    vfs.zfs.metaslab.debug_unload           <span class="m">0</span>
+    vfs.zfs.metaslab.debug_load             <span class="m">0</span>
+    vfs.zfs.metaslab.fragmentation_threshold70
+    vfs.zfs.metaslab.force_ganging          <span class="m">16777217</span>
+    vfs.zfs.free_bpobj_enabled              <span class="m">1</span>
+    vfs.zfs.free_max_blocks                 -1
+    vfs.zfs.zfs_scan_checkpoint_interval    <span class="m">7200</span>
+    vfs.zfs.zfs_scan_legacy                 <span class="m">0</span>
+    vfs.zfs.no_scrub_prefetch               <span class="m">0</span>
+    vfs.zfs.no_scrub_io                     <span class="m">0</span>
+    vfs.zfs.resilver_min_time_ms            <span class="m">3000</span>
+    vfs.zfs.free_min_time_ms                <span class="m">1000</span>
+    vfs.zfs.scan_min_time_ms                <span class="m">1000</span>
+    vfs.zfs.scan_idle                       <span class="m">50</span>
+    vfs.zfs.scrub_delay                     <span class="m">4</span>
+    vfs.zfs.resilver_delay                  <span class="m">2</span>
+    vfs.zfs.top_maxinflight                 <span class="m">32</span>
+    vfs.zfs.zfetch.array_rd_sz              <span class="m">1048576</span>
+    vfs.zfs.zfetch.max_idistance            <span class="m">67108864</span>
+    vfs.zfs.zfetch.max_distance             <span class="m">8388608</span>
+    vfs.zfs.zfetch.min_sec_reap             <span class="m">2</span>
+    vfs.zfs.zfetch.max_streams              <span class="m">8</span>
+    vfs.zfs.prefetch_disable                <span class="m">0</span>
+    vfs.zfs.delay_scale                     <span class="m">500000</span>
+    vfs.zfs.delay_min_dirty_percent         <span class="m">60</span>
+    vfs.zfs.dirty_data_sync                 <span class="m">67108864</span>
+    vfs.zfs.dirty_data_max_percent          <span class="m">10</span>
+    vfs.zfs.dirty_data_max_max              <span class="m">4294967296</span>
+    vfs.zfs.dirty_data_max                  <span class="m">4294967296</span>
+    vfs.zfs.max_recordsize                  <span class="m">1048576</span>
+    vfs.zfs.default_ibs                     <span class="m">17</span>
+    vfs.zfs.default_bs                      <span class="m">9</span>
+    vfs.zfs.send_holes_without_birth_time   <span class="m">1</span>
+    vfs.zfs.mdcomp_disable                  <span class="m">0</span>
+    vfs.zfs.per_txg_dirty_frees_percent     <span class="m">30</span>
+    vfs.zfs.nopwrite_enabled                <span class="m">1</span>
+    vfs.zfs.dedup.prefetch                  <span class="m">1</span>
+    vfs.zfs.dbuf_cache_lowater_pct          <span class="m">10</span>
+    vfs.zfs.dbuf_cache_hiwater_pct          <span class="m">10</span>
+    vfs.zfs.dbuf_metadata_cache_overflow    <span class="m">0</span>
+    vfs.zfs.dbuf_metadata_cache_shift       <span class="m">6</span>
+    vfs.zfs.dbuf_cache_shift                <span class="m">5</span>
+    vfs.zfs.dbuf_metadata_cache_max_bytes   <span class="m">6259138048</span>
+    vfs.zfs.dbuf_cache_max_bytes            <span class="m">12518276096</span>
+    vfs.zfs.arc_min_prescient_prefetch_ms   <span class="m">6</span>
+    vfs.zfs.arc_min_prefetch_ms             <span class="m">1</span>
+    vfs.zfs.l2c_only_size                   <span class="m">0</span>
+    vfs.zfs.mfu_ghost_data_esize            <span class="m">307525451776</span>
+    vfs.zfs.mfu_ghost_metadata_esize        <span class="m">120832</span>
+    vfs.zfs.mfu_ghost_size                  <span class="m">307525572608</span>
+    vfs.zfs.mfu_data_esize                  <span class="m">28770021376</span>
+    vfs.zfs.mfu_metadata_esize              <span class="m">1982464</span>
+    vfs.zfs.mfu_size                        <span class="m">40105465856</span>
+    vfs.zfs.mru_ghost_data_esize            <span class="m">52882492416</span>
+    vfs.zfs.mru_ghost_metadata_esize        <span class="m">0</span>
+    vfs.zfs.mru_ghost_size                  <span class="m">52882492416</span>
+    vfs.zfs.mru_data_esize                  <span class="m">287148002304</span>
+    vfs.zfs.mru_metadata_esize              <span class="m">4036173312</span>
+    vfs.zfs.mru_size                        <span class="m">304771647488</span>
+    vfs.zfs.anon_data_esize                 <span class="m">0</span>
+    vfs.zfs.anon_metadata_esize             <span class="m">0</span>
+    vfs.zfs.anon_size                       <span class="m">32768</span>
+    vfs.zfs.l2arc_norw                      <span class="m">1</span>
+    vfs.zfs.l2arc_feed_again                <span class="m">1</span>
+    vfs.zfs.l2arc_noprefetch                <span class="m">1</span>
+    vfs.zfs.l2arc_feed_min_ms               <span class="m">200</span>
+    vfs.zfs.l2arc_feed_secs                 <span class="m">1</span>
+    vfs.zfs.l2arc_headroom                  <span class="m">2</span>
+    vfs.zfs.l2arc_write_boost               <span class="m">8388608</span>
+    vfs.zfs.l2arc_write_max                 <span class="m">8388608</span>
+    vfs.zfs.arc_meta_strategy               <span class="m">0</span>
+    vfs.zfs.arc_meta_limit                  <span class="m">99321118720</span>
+    vfs.zfs.arc_free_target                 <span class="m">2088965</span>
+    vfs.zfs.arc_kmem_cache_reap_retry_ms    <span class="m">0</span>
+    vfs.zfs.compressed_arc_enabled          <span class="m">1</span>
+    vfs.zfs.arc_grow_retry                  <span class="m">60</span>
+    vfs.zfs.arc_shrink_shift                <span class="m">7</span>
+    vfs.zfs.arc_average_blocksize           <span class="m">8192</span>
+    vfs.zfs.arc_no_grow_shift               <span class="m">5</span>
+    vfs.zfs.arc_min                         <span class="m">214748364800</span>
+    vfs.zfs.arc_max                         <span class="m">397284474880</span>
+    vfs.zfs.abd_chunk_size                  <span class="m">4096</span>
+    vfs.zfs.abd_scatter_enabled             <span class="m">1</span>
+
+------------------------------------------------------------------------
+</code></pre></div>
+</td></tr></table>
+
+<h2 id="view-the-current-utilisation-of-disk-io-bandwidth">View the current utilisation of disk IO bandwidth<a class="headerlink" href="#view-the-current-utilisation-of-disk-io-bandwidth" title="Permanent link">&para;</a></h2>
+<p>Show live updating view of R/W operations and bandwidth for a pool</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>zpool iostat <span class="m">1</span> 
+</code></pre></div>
+</td></tr></table>
+
+<p>Keep an eye on one disk. In my case the SLOG device - Intel Optane disk identified by nvd0</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>zpool iostat -v <span class="m">1</span> <span class="p">|</span>grep /dev/nvd0 
+</code></pre></div>
+</td></tr></table>
+
+<h2 id="zfs-and-nfs">ZFS and NFS<a class="headerlink" href="#zfs-and-nfs" title="Permanent link">&para;</a></h2>
+<p>To share a ZFS dataset over NFS and prevent a user from getting root privileges over NFS, </p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>zfs <span class="nb">set</span> <span class="nv">sharenfs</span><span class="o">=</span><span class="s2">&quot;-network 172.16.0.0/17 -maproot=nfsroot&quot;</span> iron_bank/researchdata/aus_data
+service nfsd restart
+</code></pre></div>
+</td></tr></table>
+
+<p>Where, the NFS share can be mounted only on 172.16.0.0/17 and a root user will be mapped to a dummy nfsroot account on this file server.</p>
+<p>Alternatively, if you need to be able to access a dataset as root over NFS,</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>zfs <span class="nb">set</span> <span class="nv">sharenfs</span><span class="o">=</span><span class="s2">&quot;-network 172.16.0.0/17 -maproot=root&quot;</span> iron_bank/researchdata/aus_data
+service nfsd restart
+</code></pre></div>
+</td></tr></table>
+
+<h2 id="creating-a-zfs-dataset">Creating a ZFS dataset<a class="headerlink" href="#creating-a-zfs-dataset" title="Permanent link">&para;</a></h2>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>zfs create -o <span class="nv">compress</span><span class="o">=</span>lz4 -o <span class="nv">snapdir</span><span class="o">=</span>visible iron_bank/researchdata
+</code></pre></div>
+</td></tr></table>
+
+<h2 id="crucial-datasets-where-data-integrity-takes-double-priority-over-performance">Crucial datasets where data integrity takes double priority over performance<a class="headerlink" href="#crucial-datasets-where-data-integrity-takes-double-priority-over-performance" title="Permanent link">&para;</a></h2>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>zfs create -o <span class="nv">compress</span><span class="o">=</span>lz4 -o <span class="nv">snapdir</span><span class="o">=</span>visible iron_bank/researchdata
+zfs <span class="nb">set</span> <span class="nv">sync</span><span class="o">=</span>always iron_bank/researchdata
+</code></pre></div>
+</td></tr></table>
+
+<h2 id="zfs-tunables">ZFS Tunables<a class="headerlink" href="#zfs-tunables" title="Permanent link">&para;</a></h2>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>root@ironbank01:~ <span class="c1"># grep vfs.zfs /boot/loader.conf</span>
+vfs.zfs.deadman_enabled<span class="o">=</span><span class="m">0</span>
+vfs.zfs.vdev.cache.size<span class="o">=</span>16M
+</code></pre></div>
+</td></tr></table>
+
+<p>On /etc/sysctl.conf</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="c1"># 200GiB of ARC minimum</span>
+vfs.zfs.arc_min<span class="o">=</span><span class="m">214748364800</span>
+<span class="c1"># 150 GiB of ARC metadata limit</span>
+vfs.zfs.arc_meta_limit<span class="o">=</span><span class="m">161061273600</span>
+<span class="c1"># 370 GiB of max ARC to prevent system from losing NFS memory</span>
+vfs.zfs.arc_max<span class="o">=</span><span class="m">397284474880</span>
+</code></pre></div>
+</td></tr></table>
+
+<h2 id="testing-disks-primitively">Testing disks primitively<a class="headerlink" href="#testing-disks-primitively" title="Permanent link">&para;</a></h2>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>root@ironbank01:~ <span class="c1"># diskinfo -ctv /dev/da1</span>
+/dev/da1
+    <span class="m">512</span>             <span class="c1"># sectorsize</span>
+    <span class="m">12000138625024</span>  <span class="c1"># mediasize in bytes (11T)</span>
+    <span class="m">23437770752</span>     <span class="c1"># mediasize in sectors</span>
+    <span class="m">4096</span>            <span class="c1"># stripesize</span>
+    <span class="m">0</span>               <span class="c1"># stripeoffset</span>
+    <span class="m">1458933</span>         <span class="c1"># Cylinders according to firmware.</span>
+    <span class="m">255</span>             <span class="c1"># Heads according to firmware.</span>
+    <span class="m">63</span>              <span class="c1"># Sectors according to firmware.</span>
+    HGST HUH721212AL5200    <span class="c1"># Disk descr.</span>
+    8HKX1R0H        <span class="c1"># Disk ident.</span>
+    id1,enc@n5000ccab04075dbc/type@0/slot@2/elmdesc@SLOT_01,8HKX1R0H____________    <span class="c1"># Physical path</span>
+    No              <span class="c1"># TRIM/UNMAP support</span>
+    <span class="m">7200</span>            <span class="c1"># Rotation rate in RPM</span>
+    Not_Zoned       <span class="c1"># Zone Mode</span>
+
+I/O <span class="nb">command</span> overhead:
+    <span class="nb">time</span> to <span class="nb">read</span> 10MB block      <span class="m">0</span>.063105 <span class="nv">sec</span>   <span class="o">=</span>    <span class="m">0</span>.003 msec/sector
+    <span class="nb">time</span> to <span class="nb">read</span> <span class="m">20480</span> sectors   <span class="m">1</span>.243264 <span class="nv">sec</span>   <span class="o">=</span>    <span class="m">0</span>.061 msec/sector
+    calculated <span class="nb">command</span> <span class="nv">overhead</span>         <span class="o">=</span>    <span class="m">0</span>.058 msec/sector
+
+Seek times:
+    Full stroke:      <span class="m">250</span> iter in   <span class="m">4</span>.591331 <span class="nv">sec</span> <span class="o">=</span>   <span class="m">18</span>.365 msec
+    Half stroke:      <span class="m">250</span> iter in   <span class="m">3</span>.427104 <span class="nv">sec</span> <span class="o">=</span>   <span class="m">13</span>.708 msec
+    Quarter stroke:   <span class="m">500</span> iter in   <span class="m">5</span>.592419 <span class="nv">sec</span> <span class="o">=</span>   <span class="m">11</span>.185 msec
+    Short forward:    <span class="m">400</span> iter in   <span class="m">1</span>.777049 <span class="nv">sec</span> <span class="o">=</span>    <span class="m">4</span>.443 msec
+    Short backward:   <span class="m">400</span> iter in   <span class="m">2</span>.028514 <span class="nv">sec</span> <span class="o">=</span>    <span class="m">5</span>.071 msec
+    Seq outer:   <span class="m">2048</span> iter in   <span class="m">0</span>.085151 <span class="nv">sec</span> <span class="o">=</span>    <span class="m">0</span>.042 msec
+    Seq inner:   <span class="m">2048</span> iter in   <span class="m">0</span>.132923 <span class="nv">sec</span> <span class="o">=</span>    <span class="m">0</span>.065 msec
+
+Transfer rates:
+    outside:       <span class="m">102400</span> kbytes in   <span class="m">0</span>.439125 <span class="nv">sec</span> <span class="o">=</span>   <span class="m">233191</span> kbytes/sec
+    middle:        <span class="m">102400</span> kbytes in   <span class="m">0</span>.519029 <span class="nv">sec</span> <span class="o">=</span>   <span class="m">197291</span> kbytes/sec
+    inside:        <span class="m">102400</span> kbytes in   <span class="m">0</span>.819735 <span class="nv">sec</span> <span class="o">=</span>   <span class="m">124918</span> kbytes/sec
+</code></pre></div>
+</td></tr></table>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../slurm/" title="Slurm" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Slurm
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
+    </div>
+  
+
+
+<footer class="pv1 ph3 ph5-m ph6-l bg-black">
+  <div class="tc">
+      <a class="light-gray f3 f2-ns fw5 tc link dim dib mt4 mb4 mb0-l Alegreya-sans" href="mailto:aravindh@fastmail.com" >
+          aravindh@fastmail.com
+      </a>
+  </div>
+  <div class="tc mt3 mb3">
+      <a class="link near-white hover-blue dib h2 w2 mr3" href="https://github.com/aravindhsampath" title="GitHub">
+          <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.414"><path d="M8 0C3.58 0 0 3.582 0 8c0 3.535 2.292 6.533 5.47 7.59.4.075.547-.172.547-.385 0-.19-.007-.693-.01-1.36-2.226.483-2.695-1.073-2.695-1.073-.364-.924-.89-1.17-.89-1.17-.725-.496.056-.486.056-.486.803.056 1.225.824 1.225.824.714 1.223 1.873.87 2.33.665.072-.517.278-.87.507-1.07-1.777-.2-3.644-.888-3.644-3.953 0-.873.31-1.587.823-2.147-.083-.202-.358-1.015.077-2.117 0 0 .672-.215 2.2.82.638-.178 1.323-.266 2.003-.27.68.004 1.364.092 2.003.27 1.527-1.035 2.198-.82 2.198-.82.437 1.102.163 1.915.08 2.117.513.56.823 1.274.823 2.147 0 3.073-1.87 3.75-3.653 3.947.287.246.543.735.543 1.48 0 1.07-.01 1.933-.01 2.195 0 .215.144.463.55.385C13.71 14.53 16 11.534 16 8c0-4.418-3.582-8-8-8"/></svg>
+      </a>
+      <a href="https://www.facebook.com/aravindh.sathish" class="link dim dib mr3 near-white" title="Impossible Labs on Facebook">
+          <svg class="db w2 h2" data-icon="facebook" viewBox="0 0 32 32" fill="currentColor">
+            <title >facebook icon</title>
+            <path d="M8 12 L13 12 L13 8 C13 2 17 1 24 2 L24 7 C20 7 19 7 19 10 L19 12 L24 12 L23 18 L19 18 L19 30 L13 30 L13 18 L8 18 z"> 
+              </path>
+          </svg>
+      </a>
+      <a href="https://twitter.com/reacharavindh" class="link dim dib mr3 near-white">
+          <svg class="db w2 h2" data-icon="twitter" viewBox="0 0 32 32"
+              fill="currentColor" >
+              <title >twitter icon</title>
+              <path d="M2 4 C6 8 10 12 15 11 A6 6 0 0 1 22 4 A6 6 0 0 1 26 6 A8 8 0 0 0 31 4 A8 8 0 0 1 28 8 A8 8 0 0 0 32 7 A8 8 0 0 1 28 11 A18 18 0 0 1 10 30 A18 18 0 0 1 0 27 A12 12 0 0 0 8 24 A8 8 0 0 1 3 20 A8 8 0 0 0 6 19.5 A8 8 0 0 1 0 12 A8 8 0 0 0 3 13 A8 8 0 0 1 2 4">
+              </path>
+          </svg>
+      </a>
+      <a href="https://www.linkedin.com/in/aravindhsampath/" class="link dim dib black-30">
+          <svg class="db w2 h2" x="0px" y="0px" viewBox="0 0 48 48" >
+              <linearGradient gradientUnits="userSpaceOnUse" x1="23.9995"
+                y1="0" x2="23.9995" y2="48.0005" >
+                <stop offset="0" ></stop>
+                <stop offset="1" ></stop>
+              </linearGradient>
+              <path fill="currentColor" d="M48,42c0,3.313-2.687,6-6,6H6c-3.313,0-6-2.687-6-6V6 c0-3.313,2.687-6,6-6h36c3.313,0,6,2.687,6,6V42z">
+              </path>
+              <g >
+                <g >
+                    <path fill="#FFFFFF" d="M15.731,11.633c-1.608,0-2.658,1.083-2.625,2.527c-0.033,1.378,1.018,2.494,2.593,2.494 c1.641,0,2.691-1.116,2.691-2.494C18.357,12.716,17.339,11.633,15.731,11.633z M13.237,35.557h4.988V18.508h-4.988V35.557z M31.712,18.748c-1.595,0-3.222-0.329-4.956,2.36h-0.099l-0.087-2.599h-4.417c0.065,1.411,0.074,3.518,0.074,5.52v11.529h4.988 v-9.854c0-0.46,0.065-0.919,0.196-1.248c0.328-0.919,1.149-1.871,2.527-1.871c1.805,0,2.527,1.411,2.527,3.479v9.494h4.988V25.439 C37.455,20.713,34.993,18.748,31.712,18.748z">
+                    </path>
+                </g>
+            </g>
+          </svg>
+      </a>
+    </div>
+
+</footer>
+
+
+
+
+
+
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.d710d30a.min.js"></script>
+      <script src="../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "..",
+          features: [],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.27c6a5e6.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>
